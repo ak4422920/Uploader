@@ -42,8 +42,9 @@ async def start_cmd(client: Client, message: Message):
     )
 
 
-@bot.on_message(filters.text & filters.private & ~filters.command)
-async def handle_direct_link(client: Client, message: Message):
+@bot.on_message(filters.text & filters.private & (~filters.command([])))
+async def handle_links(client: Client, message: Message):
+ async def handle_direct_link(client: Client, message: Message):
     url = message.text.strip()
 
     if not url.startswith("http"):
